@@ -1,18 +1,19 @@
 <template>
-<Employee></Employee>
+  <Add></Add>
+  <Employee></Employee>
 </template>
 
 <script>
-import Employee from './components/Employee.vue';
-
+import Employee from "./components/Employee.vue";
+import Add from "./components/Add_search.vue";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    Employee
+    Employee,
+    Add,
   },
 };
-
 </script>
 
 <style>
@@ -22,6 +23,5 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
 }
 </style>
