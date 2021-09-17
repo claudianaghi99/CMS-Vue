@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "A5yWuWzmyXhfEbV9s1kDEhFY1D9s0fzZ4gm0Ci/4A+D6MlP3NrYUkviTpYOOwAg7UvoYd95Mj/cwR2BThIg/YQ==",
+  "dgSpecHash": "OP9I1WlCUYtAET7eQ5pm4VdattuuBtmAoJSWrvlESDPXJSVeyaZPo17fGxfGSesPwEBpbkpyCJYTWgm9L3O7vg==",
   "success": true,
-  "projectFilePath": "C:\\Projects\\FE\\WebApplication2\\WebApplication2\\WebApplication2.csproj",
+  "projectFilePath": "C:\\Projects\\FE\\CMS-Vuejs\\WebApplication2\\WebApplication2\\WebApplication2.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Claudia\\.nuget\\packages\\microsoft.aspnetcore.jsonpatch\\3.1.16\\microsoft.aspnetcore.jsonpatch.3.1.16.nupkg.sha512",
     "C:\\Users\\Claudia\\.nuget\\packages\\microsoft.aspnetcore.mvc.newtonsoftjson\\3.1.16\\microsoft.aspnetcore.mvc.newtonsoftjson.3.1.16.nupkg.sha512",
