@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import Employee from './components/Employeee.vue';
+import Employee from './components/Employee.vue';
 
 
 export default {
