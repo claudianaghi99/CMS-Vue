@@ -1,0 +1,133 @@
+
+.contents {
+  display: flex;
+}
+
+/*Header*/
+h1 {
+    display: flex;
+  justify-content: center;
+  padding-top: 1%;
+  padding-bottom: 1%;
+  color: white;
+}
+
+/* 
+
+.contents .right-part {
+    width: 60rem;
+    background-color: white;
+    border-radius: 15px;
+    padding-left: 1%;
+    padding-right: 1.5%;
+}
+
+.contents .right-part:hover {
+    box-shadow: 0.3px 0.3px 3px 3px #929597;
+}
+
+table,
+tr,
+th,
+td {
+    border: 0.5px solid black;
+    text-align: center;
+    border-collapse: collapse;
+}
+
+.table-first-line th, tr,td {
+    padding: 7px;
+}
+
+.div-table {
+    padding-top: 1.5rem;
+    padding-left: 1%;
+    padding-right: 0%;
+}
+
+thead .table-first-line .first-name-cell {
+    padding-left: 2rem;
+    padding-right: 2rem;
+}
+
+thead .table-first-line .last-name-cell {
+    padding-left: 2rem;
+    padding-right: 2rem;
+}  
+
+thead .table-first-line .email-cell {
+    padding-left: 7rem;
+    padding-right: 7rem;
+}
+
+thead .table-first-line .birthday-cell {
+    padding-left: 2rem;
+    padding-right: 2rem;
+}
+
+thead .table-first-line .sex-cell {
+    padding-left: 2rem;
+    padding-right: 2rem;
+}
+
+thead .table-first-line .delete-cell {
+    padding-left: 2rem;
+    padding-right: 2rem;
+}
+
+.filter-search {
+    padding-left: 0.7%;
+}
+
+.filter-search input {
+    padding-left: 1%;
+    width: 100%;
+}
+
+.filter-search input:hover {
+    box-shadow: 0.2px 0.2px 2px 2px #b9b9b9;;
+}
+
+.right-part .filter-search label {
+    display: block;
+    padding-bottom: 1%;
+}
+.sort-select {
+    display:flex;
+    padding-left: 0.7%;
+}
+
+.sort-select label {
+    padding-right: 1%;
+}
+
+@media(max-width: 800px) {
+
+    .contents {
+        display: grid;
+        grid-template-columns: 1fr;
+
+    }
+    .contents .left-part {
+        width: 100%;
+    }
+
+    .contents .right-part {
+        height: 110%;
+    }
+}
+
+@media(min-width:1600px){
+    .contents .right-part {
+        width: 150%;
+        height: 55rem;
+    }
+
+    .contents .right-part table{
+        width: 100%;
+    }
+
+    .contents .left-part input{
+        height: 5rem;
+    }
+} */

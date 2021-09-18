@@ -1,193 +1,197 @@
 <template>
-  <div>
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <th>
-            Employee Id
-          </th>
-          <th>
-            First Name
-          </th>
-          <th>
-            Last Name
-          </th>
-          <th>
-            Email
-          </th>
-          <th>
-            Sex
-          </th>
-          <th>
-            Date of Birth
-          </th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="emp in employees" v-bind:key="emp" v-bind:emp="emp">
-          <td>{{ emp.EmployeeId }}</td>
-          <td>{{ emp.EmployeeFirstName }}</td>
-          <td>{{ emp.EmployeeLastName }}</td>
-          <td>{{ emp.EmployeeEmail }}</td>
-          <td>{{ emp.EmployeeSex }}</td>
-          <td>{{ emp.EmployeeBirthday }}</td>
-          <td>
-            <button
-              type="button"
-              class="btn btn-light mr-1"
-              data-bs-toggle="modal"
-              data-bs-target="#exampleModal"
-              @click="editClick(emp)"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                fill="currentColor"
-                class="bi bi-pencil-square"
-                viewBox="0 0 16 16"
+  <div class="all">
+    <div class="table-responsive-xl">
+      <table id="tabel" class="table table-bordered table-hover">
+        <thead class="thead-dark">
+          <tr>
+            <th>
+              Employee Id
+            </th>
+            <th>
+              First Name
+            </th>
+            <th>
+              Last Name
+            </th>
+            <th>
+              Email
+            </th>
+            <th>
+              Sex
+            </th>
+            <th>
+              Date of Birth
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="emp in employees" v-bind:key="emp" v-bind:emp="emp">
+            <td>{{ emp.EmployeeId }}</td>
+            <td>{{ emp.EmployeeFirstName }}</td>
+            <td>{{ emp.EmployeeLastName }}</td>
+            <td>{{ emp.EmployeeEmail }}</td>
+            <td>{{ emp.EmployeeSex }}</td>
+            <td>{{ emp.EmployeeBirthday }}</td>
+            <td>
+              <button
+                type="button"
+                class="btn btn-light mr-1"
+                data-bs-toggle="modal"
+                data-bs-target="#exampleModal"
+                @click="editClick(emp)"
               >
-                <path
-                  d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"
-                />
-                <path
-                  fill-rule="evenodd"
-                  d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"
-                />
-              </svg>
-            </button>
-            <button
-              type="button"
-              @click="deleteClick(emp.EmployeeId)"
-              class="btn btn-light mr-1"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                fill="currentColor"
-                class="bi bi-trash-fill"
-                viewBox="0 0 16 16"
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  fill="currentColor"
+                  class="bi bi-pencil-square"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"
+                  />
+                  <path
+                    fill-rule="evenodd"
+                    d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"
+                  />
+                </svg>
+              </button>
+              <button
+                type="button"
+                @click="deleteClick(emp.EmployeeId)"
+                class="btn btn-light mr-1"
               >
-                <path
-                  d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"
-                />
-              </svg>
-            </button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-    <div
-      class="modal fade"
-      id="exampleModal"
-      tabindex="-1"
-      aria-labelledby="exampleModalLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog modal-lg modal-dialog-centered">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">{{ modalTitle }}</h5>
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-            ></button>
-          </div>
-
-          <div class="modal-body">
-            <div class="d-flex flex-row bd-highlight mb-3">
-              <div class="p-2 w-50 bd-highlight">
-                <div class="input-group mb-3">
-                  <span class="input-group-text">First Name</span>
-                  <input
-                    type="text"
-                    class="form-control"
-                    placeholder="First name"
-                    onfocus="this.placeholder = ' ' "
-                    onblur=" this.placeholder = 'First name'"
-                    required
-                    v-model="EmployeeFirstName"
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  fill="currentColor"
+                  class="bi bi-trash-fill"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"
                   />
-                </div>
-
-                <div class="input-group mb-3">
-                  <span class="input-group-text">Last Name</span>
-                  <input
-                    type="text"
-                    class="form-control"
-                    placeholder="Last name"
-                    onfocus="this.placeholder = ' ' "
-                    onblur=" this.placeholder = 'Last name'"
-                    required
-                    v-model="EmployeeLastName"
-                  />
-                </div>
-
-                <div class="input-group mb-3">
-                  <span class="input-group-text">Email</span>
-                  <input
-                    type="text"
-                    class="form-control"
-                    placeholder="E-mail"
-                    onfocus="this.placeholder = ' ' "
-                    onblur=" this.placeholder = 'E-mail'"
-                    required
-                    v-model="EmployeeEmail"
-                  />
-                </div>
-
-                <div class="input-group mb-3">
-                  <span class="input-group-text">Sex</span>
-                  <select
-                    id="sex-list"
-                    v-model="EmployeeSex"
-                    class="form-control"
-                    required
-                  >
-                    <option value="">None</option>
-                    <option value="Female">Female</option>
-                    <option value="Male">Male</option>
-                  </select>
-                </div>
-
-                <div class="input-group mb-3">
-                  <span class="input-group-text">Date of Birth</span>
-                  <input
-                    type="date"
-                    class="form-control"
-                    v-model="EmployeeBirthday"
-                    required
-                  />
-                </div>
-              </div>
-              <div class="p-2 w-50 bd-highlight">
-                <img
-                  width="250px"
-                  height="250px"
-                  :src="PhotoPath + PhotoFileName"
-                />
-                <input class="m-2" type="file" @change="imageUpload" />
-              </div>
+                </svg>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div
+        class="modal fade"
+        id="exampleModal"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">
+                {{ modalTitle }}
+              </h5>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
             </div>
-            <button
-              type="button"
-              @click="createClick()"
-              v-if="EmployeeId == 0"
-              class="btn btn-primary"
-            >
-              Create
-            </button>
-            <button
-              type="button"
-              @click="updateClick()"
-              v-if="EmployeeId != 0"
-              class="btn btn-primary"
-            >
-              Update
-            </button>
+
+            <div class="modal-body">
+              <div class="d-flex flex-row bd-highlight mb-3">
+                <div class="p-2 w-50 bd-highlight">
+                  <div class="input-group mb-3">
+                    <span class="input-group-text">First Name</span>
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="First name"
+                      onfocus="this.placeholder = ' ' "
+                      onblur=" this.placeholder = 'First name'"
+                      required
+                      v-model="EmployeeFirstName"
+                    />
+                  </div>
+
+                  <div class="input-group mb-3">
+                    <span class="input-group-text">Last Name</span>
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="Last name"
+                      onfocus="this.placeholder = ' ' "
+                      onblur=" this.placeholder = 'Last name'"
+                      required
+                      v-model="EmployeeLastName"
+                    />
+                  </div>
+
+                  <div class="input-group mb-3">
+                    <span class="input-group-text">Email</span>
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="E-mail"
+                      onfocus="this.placeholder = ' ' "
+                      onblur=" this.placeholder = 'E-mail'"
+                      required
+                      v-model="EmployeeEmail"
+                    />
+                  </div>
+
+                  <div class="input-group mb-3">
+                    <span class="input-group-text">Sex</span>
+                    <select
+                      id="sex-list"
+                      v-model="EmployeeSex"
+                      class="form-control"
+                      required
+                    >
+                      <option value="">None</option>
+                      <option value="Female">Female</option>
+                      <option value="Male">Male</option>
+                    </select>
+                  </div>
+
+                  <div class="input-group mb-3">
+                    <span class="input-group-text">Date of Birth</span>
+                    <input
+                      type="date"
+                      class="form-control"
+                      v-model="EmployeeBirthday"
+                      required
+                    />
+                  </div>
+                </div>
+                <div class="p-2 w-50 bd-highlight">
+                  <img
+                    width="250px"
+                    height="250px"
+                    :src="PhotoPath + PhotoFileName"
+                  />
+                  <input class="m-2" type="file" @change="imageUpload" />
+                </div>
+              </div>
+              <button
+                type="button"
+                @click="createClick()"
+                v-if="EmployeeId == 0"
+                class="btn btn-dark"
+              >
+                Create
+              </button>
+              <button
+                type="button"
+                @click="updateClick()"
+                v-if="EmployeeId != 0"
+                class="btn btn-primary"
+              >
+                Update
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -289,3 +293,14 @@ export default {
   },
 };
 </script>
+
+<style>
+* {
+  font-family: "Nunito", sans-serif;
+  margin:0;
+}
+
+#tabel {
+  background-color:rgb(230, 182, 166);
+}
+</style>

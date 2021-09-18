@@ -2,15 +2,18 @@
   <div>
     <h1>Content Management System</h1>
   </div>
-  <button
+  <div class="button-div">
+      <button
     type="button"
-    class="btn btn-primary m-2 fload-end"
+    class="btn btn-dark m-2"
     data-bs-toggle="modal"
     data-bs-target="#exampleModal"
     @click="addClick()"
   >
     Add Employee
   </button>
+  </div>
+
 </template>
 
 <script>
@@ -54,3 +57,19 @@ export default {
   },
 };
 </script>
+
+<style>
+
+/* Header */
+h1 {
+    display: flex;
+  justify-content: center;
+  padding-top: 1%;
+  padding-bottom: 1%;
+  color: black;
+}
+.button-div {
+  padding-bottom:1%;
+  padding-left: 1%;
+}
+</style>
