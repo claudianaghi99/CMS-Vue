@@ -5,6 +5,7 @@
         <thead class="thead-dark">
           <tr>
             <th>
+             
               Employee Id
             </th>
             <th>
@@ -31,7 +32,7 @@
             <td>{{ emp.EmployeeLastName }}</td>
             <td>{{ emp.EmployeeEmail }}</td>
             <td>{{ emp.EmployeeSex }}</td>
-            <td>{{ emp.EmployeeBirthday }}</td>
+            <span>{{moment(emp.EmployeeBirthday).format('DD MMM YYYY')}}</span>
             <td>
               <button
                 type="button"
@@ -112,7 +113,6 @@
                       onblur=" this.placeholder = 'First name'"
                       required
                       v-model="EmployeeFirstName"
-                      v-on:keyup="validateFN"
                     />
                   </div>
 
@@ -126,7 +126,6 @@
                       onblur=" this.placeholder = 'Last name'"
                       required
                       v-model="EmployeeLastName"
-                      v-on:keyup="validateLN"
                     />
                   </div>
 
@@ -139,10 +138,6 @@
                       onfocus="this.placeholder = ' ' "
                       onblur=" this.placeholder = 'E-mail'"
                       v-model="EmployeeEmail"
-                      v-on:keyup="
-                        isEmailValid;
-                        validateEmail;
-                      "
                       required
                     />
                   </div>
@@ -154,7 +149,6 @@
                       v-model="EmployeeSex"
                       class="form-control"
                       required
-                      v-on:change="validateSex"
                     >
                       <option value="">None</option>
                       <option value="Female">Female</option>
@@ -163,12 +157,12 @@
                   </div>
 
                   <div class="input-group mb-3">
+                  
                     <span class="input-group-text">Date of Birth</span>
                     <input
                       type="date"
                       class="form-control"
                       v-model="EmployeeBirthday"
-                      v-on:change="validateBirthday"
                       required
                     />
                   </div>
@@ -192,10 +186,7 @@
               </button>
               <button
                 type="button"
-                @click="
-                  validateFN();
-                  updateClick();
-                "
+                @click="updateClick()"
                 v-if="EmployeeId != 0"
                 class="btn btn-primary"
               >
@@ -212,6 +203,8 @@
 <script>
 import axios from "axios";
 
+import moment from 'moment';
+
 const variables = {
   API_URL: "http://localhost:22612/api/",
   PHOTO_URL: "http://localhost:22612/photos/",
@@ -219,6 +212,7 @@ const variables = {
 /* eslint-disable */
 const emailRe = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 export default {
+  
   data() {
     return {
       employees: [],
@@ -233,9 +227,11 @@ export default {
       PhotoPath: variables.PHOTO_URL,
     };
   },
+
   /* eslint-disable */
   methods: {
-    
+    moment:moment,
+
     refreshData() {
       axios.get(variables.API_URL + "employee").then((response) => {
         this.employees = response.data;
@@ -253,6 +249,10 @@ export default {
         (this.PhotoFileName = emp.PhotoFileName);
     },
     createClick() {
+
+
+      this.EmployeeBirthday = moment(this.EmployeeBirthday);
+
       if (this.EmployeeFirstName === "") {
         alert("Enter First Name");
         return false;
@@ -278,7 +278,7 @@ export default {
         alert("Email not valid.");
         return false;
       }
-     
+
       axios
         .post(variables.API_URL + "employee", {
           EmployeeFirstName: this.EmployeeFirstName,
