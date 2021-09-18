@@ -99,7 +99,6 @@
                 aria-label="Close"
               ></button>
             </div>
-
             <div class="modal-body">
               <div class="d-flex flex-row bd-highlight mb-3">
                 <div class="p-2 w-50 bd-highlight">
@@ -137,8 +136,8 @@
                       placeholder="E-mail"
                       onfocus="this.placeholder = ' ' "
                       onblur=" this.placeholder = 'E-mail'"
-                      required
                       v-model="EmployeeEmail"
+                      required
                     />
                   </div>
 
@@ -177,7 +176,14 @@
               </div>
               <button
                 type="button"
-                @click="createClick()"
+                @click="
+                  createClick();
+                  validateFN();
+                  validateLN();
+                  validateEmail();
+                  validateSex();
+                  validateBirthday();
+                "
                 v-if="EmployeeId == 0"
                 class="btn btn-dark"
               >
@@ -222,12 +228,44 @@ export default {
       PhotoPath: variables.PHOTO_URL,
     };
   },
+
   methods: {
+    validateFN() {
+      if (this.EmployeeFirstName === "") {
+        alert("Enter First Name");
+      }
+    },
+
+    validateLN() {
+      if (this.EmployeeLastName === "") {
+        alert("Enter Last Name");
+      }
+    },
+
+    validateEmail() {
+      if (this.EmployeeEmail === "") {
+        alert("Enter Email");
+      }
+    },
+
+    validateSex() {
+      if (this.EmployeeSex === "") {
+        alert("Enter Sex");
+      }
+    },
+
+    validateBirthday() {
+      if (this.EmployeeBirthday === "") {
+        alert("Enter Birthday");
+      }
+    },
+
     refreshData() {
       axios.get(variables.API_URL + "employee").then((response) => {
         this.employees = response.data;
       });
     },
+
     editClick(emp) {
       this.modalTitle = "Edit Employee";
       this.EmployeeId = emp.EmployeeId;
@@ -297,10 +335,10 @@ export default {
 <style>
 * {
   font-family: "Nunito", sans-serif;
-  margin:0;
+  margin: 0;
 }
 
 #tabel {
-  background-color:rgb(230, 182, 166);
+  background-color: rgb(230, 182, 166);
 }
 </style>
