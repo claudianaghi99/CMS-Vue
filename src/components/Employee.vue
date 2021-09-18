@@ -4,10 +4,7 @@
       <table id="tabel" class="table table-bordered table-hover">
         <thead class="thead-dark">
           <tr>
-            <th>
-             
-              Employee Id
-            </th>
+        
             <th>
               First Name
             </th>
@@ -27,12 +24,16 @@
         </thead>
         <tbody>
           <tr v-for="emp in employees" v-bind:key="emp" v-bind:emp="emp">
-            <td>{{ emp.EmployeeId }}</td>
+           
             <td>{{ emp.EmployeeFirstName }}</td>
             <td>{{ emp.EmployeeLastName }}</td>
             <td>{{ emp.EmployeeEmail }}</td>
             <td>{{ emp.EmployeeSex }}</td>
-            <td><span>{{moment(emp.EmployeeBirthday).format('DD MMM YYYY')}}</span></td>
+            <td>
+              <span>{{
+                moment(emp.EmployeeBirthday).format("DD MMM YYYY")
+              }}</span>
+            </td>
             <td>
               <button
                 type="button"
@@ -157,7 +158,6 @@
                   </div>
 
                   <div class="input-group mb-3">
-                  
                     <span class="input-group-text">Date of Birth</span>
                     <input
                       type="date"
@@ -203,7 +203,7 @@
 <script>
 import axios from "axios";
 
-import moment from 'moment';
+import moment from "moment";
 
 const variables = {
   API_URL: "http://localhost:22612/api/",
@@ -212,7 +212,6 @@ const variables = {
 /* eslint-disable */
 const emailRe = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 export default {
-  
   data() {
     return {
       employees: [],
@@ -230,7 +229,7 @@ export default {
 
   /* eslint-disable */
   methods: {
-    moment:moment,
+    moment: moment,
 
     refreshData() {
       axios.get(variables.API_URL + "employee").then((response) => {
@@ -249,8 +248,6 @@ export default {
         (this.PhotoFileName = emp.PhotoFileName);
     },
     createClick() {
-
-
       this.EmployeeBirthday = moment(this.EmployeeBirthday);
 
       if (this.EmployeeFirstName === "") {
