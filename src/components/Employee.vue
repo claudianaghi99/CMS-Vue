@@ -1,10 +1,17 @@
 <template>
   <div class="all">
+    <div class="search-div">
+      <input
+        type="text"
+        class="search-input"
+        placeholder="Search by First Name"
+        v-model="filterText"
+      />
+    </div>
     <div class="table-responsive-xl">
       <table id="tabel" class="table table-bordered table-hover">
         <thead class="thead-dark">
           <tr>
-        
             <th>
               First Name
             </th>
@@ -23,8 +30,12 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="emp in employees" v-bind:key="emp" v-bind:emp="emp">
-           
+          <tr
+            v-for="emp in employees"
+            v-bind:key="emp"
+            v-bind:emp="emp"
+            @click="filteredEmployees"
+          >
             <td>{{ emp.EmployeeFirstName }}</td>
             <td>{{ emp.EmployeeLastName }}</td>
             <td>{{ emp.EmployeeEmail }}</td>
@@ -34,53 +45,32 @@
                 moment(emp.EmployeeBirthday).format("DD MMM YYYY")
               }}</span>
             </td>
-            <td>
-              <button
-                type="button"
-                class="btn btn-light mr-1"
-                data-bs-toggle="modal"
-                data-bs-target="#exampleModal"
-                @click="editClick(emp)"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="16"
-                  height="16"
-                  fill="currentColor"
-                  class="bi bi-pencil-square"
-                  viewBox="0 0 16 16"
+            <td class="buttons">
+              <div class="edit-button">
+                <button
+                  type="button"
+                  class="btn btn-light mr-1"
+                  data-bs-toggle="modal"
+                  data-bs-target="#exampleModal"
+                  @click="editClick(emp)"
                 >
-                  <path
-                    d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"
-                  />
-                  <path
-                    fill-rule="evenodd"
-                    d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"
-                  />
-                </svg>
-              </button>
-              <button
-                type="button"
-                @click="deleteClick(emp.EmployeeId)"
-                class="btn btn-light mr-1"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="16"
-                  height="16"
-                  fill="currentColor"
-                  class="bi bi-trash-fill"
-                  viewBox="0 0 16 16"
+                  <i class="fas fa-edit"></i>
+                </button>
+              </div>
+              <div class="delete-button">
+                <button
+                  type="button"
+                  @click="deleteClick(emp.EmployeeId)"
+                  class="btn btn-light mr-1"
                 >
-                  <path
-                    d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"
-                  />
-                </svg>
-              </button>
+                  <i class="fas fa-trash-alt"></i>
+                </button>
+              </div>
             </td>
           </tr>
         </tbody>
       </table>
+
       <div
         class="modal fade"
         id="exampleModal"
@@ -215,6 +205,7 @@ export default {
   data() {
     return {
       employees: [],
+      filterText: "",
       modalTitle: "",
       EmployeeId: 0,
       EmployeeFirstName: "",
@@ -226,7 +217,12 @@ export default {
       PhotoPath: variables.PHOTO_URL,
     };
   },
-
+  computed: {
+    employees() {
+      let filter = new RegExp(this.filterText, "i");
+      return this.employees.filter((el) => el.EmployeeFirstName.match(filter));
+    },
+  },
   /* eslint-disable */
   methods: {
     moment: moment,
@@ -339,5 +335,34 @@ export default {
 
 #tabel {
   background-color: rgb(230, 182, 166);
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+}
+
+.edit-button {
+  padding-right: 10%;
+}
+
+.edit-button i {
+  padding-left: 10%;
+}
+
+.search-input {
+  padding-left:0.7%;
+  width:15%;
+  border-color: black;
+  border-radius: 5px;
+  padding-bottom: 0.3%;
+  padding-top: 0.3%;
+
+}
+
+.search-div {
+  padding-left:1.6%;
+  padding-bottom: 1%;
+  
 }
 </style>

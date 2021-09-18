@@ -12,7 +12,9 @@
   >
     Add Employee
   </button>
+
   </div>
+  
 
 </template>
 
@@ -27,6 +29,7 @@ const variables = {
 export default {
   data() {
     return {
+      
       employees: [],
       modalTitle: "",
       EmployeeId: 0,
@@ -39,6 +42,7 @@ export default {
       PhotoPath: variables.PHOTO_URL,
     };
   },
+  
   methods: {
     refreshData() {
       axios.get(variables.API_URL + "employee").then((response) => {
