@@ -32,7 +32,7 @@
             <td>{{ emp.EmployeeLastName }}</td>
             <td>{{ emp.EmployeeEmail }}</td>
             <td>{{ emp.EmployeeSex }}</td>
-            <span>{{moment(emp.EmployeeBirthday).format('DD MMM YYYY')}}</span>
+            <td><span>{{moment(emp.EmployeeBirthday).format('DD MMM YYYY')}}</span></td>
             <td>
               <button
                 type="button"
