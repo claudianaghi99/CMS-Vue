@@ -112,6 +112,7 @@
                       onblur=" this.placeholder = 'First name'"
                       required
                       v-model="EmployeeFirstName"
+                      v-on:keyup="validateFN"
                     />
                   </div>
 
@@ -125,6 +126,7 @@
                       onblur=" this.placeholder = 'Last name'"
                       required
                       v-model="EmployeeLastName"
+                      v-on:keyup="validateLN"
                     />
                   </div>
 
@@ -137,6 +139,10 @@
                       onfocus="this.placeholder = ' ' "
                       onblur=" this.placeholder = 'E-mail'"
                       v-model="EmployeeEmail"
+                      v-on:keyup="
+                        isEmailValid;
+                        validateEmail;
+                      "
                       required
                     />
                   </div>
@@ -148,6 +154,7 @@
                       v-model="EmployeeSex"
                       class="form-control"
                       required
+                      v-on:change="validateSex"
                     >
                       <option value="">None</option>
                       <option value="Female">Female</option>
@@ -161,6 +168,7 @@
                       type="date"
                       class="form-control"
                       v-model="EmployeeBirthday"
+                      v-on:change="validateBirthday"
                       required
                     />
                   </div>
@@ -176,14 +184,7 @@
               </div>
               <button
                 type="button"
-                @click="
-                  createClick();
-                  validateFN();
-                  validateLN();
-                  validateEmail();
-                  validateSex();
-                  validateBirthday();
-                "
+                @click="createClick()"
                 v-if="EmployeeId == 0"
                 class="btn btn-dark"
               >
@@ -191,7 +192,10 @@
               </button>
               <button
                 type="button"
-                @click="updateClick()"
+                @click="
+                  validateFN();
+                  updateClick();
+                "
                 v-if="EmployeeId != 0"
                 class="btn btn-primary"
               >
@@ -212,7 +216,8 @@ const variables = {
   API_URL: "http://localhost:22612/api/",
   PHOTO_URL: "http://localhost:22612/photos/",
 };
-
+/* eslint-disable */
+const emailRe = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 export default {
   data() {
     return {
@@ -228,38 +233,9 @@ export default {
       PhotoPath: variables.PHOTO_URL,
     };
   },
-
+  /* eslint-disable */
   methods: {
-    validateFN() {
-      if (this.EmployeeFirstName === "") {
-        alert("Enter First Name");
-      }
-    },
-
-    validateLN() {
-      if (this.EmployeeLastName === "") {
-        alert("Enter Last Name");
-      }
-    },
-
-    validateEmail() {
-      if (this.EmployeeEmail === "") {
-        alert("Enter Email");
-      }
-    },
-
-    validateSex() {
-      if (this.EmployeeSex === "") {
-        alert("Enter Sex");
-      }
-    },
-
-    validateBirthday() {
-      if (this.EmployeeBirthday === "") {
-        alert("Enter Birthday");
-      }
-    },
-
+    
     refreshData() {
       axios.get(variables.API_URL + "employee").then((response) => {
         this.employees = response.data;
@@ -277,6 +253,32 @@ export default {
         (this.PhotoFileName = emp.PhotoFileName);
     },
     createClick() {
+      if (this.EmployeeFirstName === "") {
+        alert("Enter First Name");
+        return false;
+      }
+      if (this.EmployeeLastName === "") {
+        alert("Enter Last Name");
+        return false;
+      }
+      if (this.EmployeeEmail === "") {
+        alert("Enter Email");
+        return false;
+      }
+      if (this.EmployeeSex === "") {
+        alert("Enter Sex");
+        return false;
+      }
+      if (this.EmployeeBirthday === "") {
+        alert("Enter Birthday");
+        return false;
+      }
+      if (emailRe.test(this.EmployeeEmail)) {
+      } else {
+        alert("Email not valid.");
+        return false;
+      }
+     
       axios
         .post(variables.API_URL + "employee", {
           EmployeeFirstName: this.EmployeeFirstName,
