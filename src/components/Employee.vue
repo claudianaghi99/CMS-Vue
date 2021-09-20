@@ -178,7 +178,7 @@
                 type="button"
                 @click="updateClick()"
                 v-if="EmployeeId != 0"
-                class="btn btn-primary"
+                class="btn btn-dark"
               >
                 Update
               </button>
