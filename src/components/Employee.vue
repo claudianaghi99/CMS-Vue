@@ -240,8 +240,8 @@ export default {
       this.EmployeeLastName = emp.EmployeeLastName;
       this.EmployeeEmail = emp.EmployeeEmail;
       this.EmployeeSex = emp.EmployeeSex;
-      (this.EmployeeBirthday = emp.EmployeeBirthday),
-        (this.PhotoFileName = emp.PhotoFileName);
+      this.EmployeeBirthday = emp.EmployeeBirthday;
+      this.PhotoFileName = emp.PhotoFileName;
     },
     createClick() {
       this.EmployeeBirthday = moment(this.EmployeeBirthday);
@@ -351,18 +351,16 @@ export default {
 }
 
 .search-input {
-  padding-left:0.7%;
-  width:15%;
+  padding-left: 0.7%;
+  width: 15%;
   border-color: black;
   border-radius: 5px;
   padding-bottom: 0.3%;
   padding-top: 0.3%;
-
 }
 
 .search-div {
-  padding-left:1.6%;
+  padding-left: 1.6%;
   padding-bottom: 1%;
-  
 }
 </style>
